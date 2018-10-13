@@ -1,0 +1,28 @@
+sudo: required
+
+services:
+- docker
+
+env:
+  global:
+  - IMAGE_NAME=ejoerns/rauc-testing
+  - REGISTRY_USER=ejoerns
+  - secure: lImxuCZJkBKqd3/IpnBtdNiEHjEq0cd2/PR+YsqXFz63uSzSKgyKCwCroLyTgQYXznn6pWK1ShjV50IpZSrA56mev6cErxKDrGSrcR0QBEFdPAq4f7rxJ22vd0a/TJlayR/qvFnzHSkrMm0SgfE3ZrEprTD7V3f1UhoYFOpcLCvWdq6Irn9EEgOv2gessGcwDeK2kYSI0PKwVSppLpHItAUMbeGN7/S1zeXJBM568j9jHRDwLWo4hfQ9SFz+U4a2NmvunOMILPUbIrI5FBws0wnCdBAvdn3tIL08M8vBl7E4Z9EeaF2XCLVJ2bNHRLtYj7xNqryJ1n8DfXeEFopgbqfkWuiDnZHRCau6C7Csxq2fBotQigiEag7wrPm0Z8M0sDKzvL42PIo+ApJCX6XU1Jwm3u5o6V+cN41pSn+sxV7ozJ+fuagT4DdsdgvJD4TdA23RlYVEwkon7kyb+xShNeF/xZT9d+sgCvlYwiQ3NzRK1DL1PE5pO4GTz0x9oopJtB9JbJaUbEzz3nbc3u1nUVqr6j6vHtaKAXoBP3WrtklE/PGM/6L9Drx0voszvNOU8yf/06zG8VHZrHP11drJmGCUcLMewNln4i2K8y9Stg/s+mzeVWSNuaThGTQM3eHmkxN0f07AR6OFjLGsi2NV1gALRziGOQESfmmoFShx+Yw=
+
+before_script:
+  - docker pull "$IMAGE_NAME" || true
+script:
+  - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
+
+after_script:
+  - docker images
+
+before_deploy:
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
+
+deploy:
+  provider: script
+  script: docker push "${IMAGE_NAME}:latest"
+  on:
+    branch: master
