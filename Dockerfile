@@ -33,7 +33,11 @@ RUN apt-get install -y \
 
 # Required for test environment setup
 RUN apt-get install -y \
-  python3-pip
+  python3-pip \
+  git \
+  curl && \
+  curl -sLo /usr/bin/codecov https://codecov.io/bash && \
+  chmod +x /usr/bin/codecov
 
 # Create required directories for bind mounts
 RUN mkdir -p /lib/modules && \
