@@ -35,6 +35,10 @@ RUN apt-get install -y \
 RUN apt-get install -y \
   python3-pip
 
+# Create required directories for bind mounts
+RUN mkdir -p /lib/modules && \
+    mkdir -p /var/run/dbus
+
 RUN pip3 install --upgrade cpp-coveralls
 
 # We want to run as non-root user equaling uid of Travis' user 'travis' (2000)
