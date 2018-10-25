@@ -30,3 +30,9 @@ RUN apt-get install -y \
   kmod \
   uncrustify \
   casync
+
+# Required for test environment setup
+RUN apt-get install -y \
+  python3-pip
+
+RUN pip3 install --upgrade cpp-coveralls
