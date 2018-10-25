@@ -36,3 +36,11 @@ RUN apt-get install -y \
   python3-pip
 
 RUN pip3 install --upgrade cpp-coveralls
+
+# We want to run as non-root user equaling uid of Travis' user 'travis' (2000)
+ENV user travis
+
+RUN useradd -u 2000 -m -d /home/${user} ${user} \
+ && chown -R ${user} /home/${user}
+
+USER ${user}
