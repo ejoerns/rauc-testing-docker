@@ -9,11 +9,11 @@ RUN apt-get update && apt-get install -y \
   libssl-dev
 
 # Reqired for building (extended)
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
   libjson-glib-dev
 
 # Rquired for testing
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
   squashfs-tools \
   dosfstools \
   lcov \
@@ -32,7 +32,7 @@ RUN apt-get install -y \
   casync
 
 # Required for test environment setup
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y \
   python3-pip \
   git \
   gcc-6 \
