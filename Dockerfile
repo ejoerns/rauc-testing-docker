@@ -5,8 +5,7 @@ RUN apt-get update && apt-get install -y \
   automake \
   libtool \
   libglib2.0-dev \
-  libcurl4 \
-  libcurl4-openssl-dev \
+  libcurl3-dev \
   libssl-dev
 
 # Reqired for building (extended)
@@ -35,8 +34,6 @@ RUN apt-get update && apt-get install -y \
   curl && \
   curl -sLo /usr/bin/codecov https://codecov.io/bash && \
   chmod +x /usr/bin/codecov
-
-RUN apt-get remove libcurl3-gnutls -y
 
 # Create required directories for bind mounts
 RUN mkdir -p /lib/modules && \
