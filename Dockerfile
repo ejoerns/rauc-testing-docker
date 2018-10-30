@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y \
   uncrustify \
   casync
 
-RUN apt-get remote libcurl3-gnutls
+RUN apt-get remove libcurl3-gnutls
 
 # Required for test environment setup
 RUN apt-get update && apt-get install -y \
