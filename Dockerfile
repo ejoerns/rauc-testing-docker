@@ -42,6 +42,11 @@ RUN apt-get update && apt-get install -y \
   curl -sLo /usr/bin/codecov https://codecov.io/bash && \
   chmod +x /usr/bin/codecov
 
+RUN apt-get update && apt-get install -y \
+  sudo \
+  gdb \
+  strace
+
 # Create required directories for bind mounts
 RUN mkdir -p /lib/modules && \
     mkdir -p /var/run/dbus
