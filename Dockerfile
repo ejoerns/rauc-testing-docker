@@ -22,9 +22,16 @@ RUN apt-get update && apt-get install -y \
   dbus-x11 \
   user-mode-linux \
   grub-common \
+  softhsm2 \
+  opensc \
+  opensc-pkcs11 \
+  libengine-pkcs11-openssl \
   faketime \
   kmod \
-  uncrustify
+  uncrustify \
+  casync
+
+# libcurl4-openssl-dev
 
 # Required for test environment setup
 RUN apt-get update && apt-get install -y \
