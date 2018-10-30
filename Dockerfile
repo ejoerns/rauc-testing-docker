@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
   automake \
   libtool \
   libglib2.0-dev \
+  libcurl4 \
   libcurl4-openssl-dev \
   libssl-dev
 
