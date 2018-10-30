@@ -25,10 +25,7 @@ RUN apt-get update && apt-get install -y \
   grub-common \
   faketime \
   kmod \
-  uncrustify \
-  casync
-
-RUN apt-get remove libcurl3-gnutls
+  uncrustify
 
 # Required for test environment setup
 RUN apt-get update && apt-get install -y \
