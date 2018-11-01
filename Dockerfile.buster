@@ -37,6 +37,7 @@ RUN apt-get update && apt-get install -y \
   git \
   gcc-6 \
   curl && \
+  rng-tools5 \
   curl -sLo /usr/bin/codecov https://codecov.io/bash && \
   chmod +x /usr/bin/codecov
 
