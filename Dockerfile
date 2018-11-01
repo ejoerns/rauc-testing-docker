@@ -6,8 +6,7 @@ RUN apt-get update && apt-get install -y \
   libtool \
   libglib2.0-dev \
   libcurl3-dev \
-  libssl-dev \
-  libssl1.0.2
+  libssl-dev
 
 # Reqired for building (extended)
 RUN apt-get update && apt-get install -y \
@@ -32,8 +31,6 @@ RUN apt-get update && apt-get install -y \
   uncrustify \
   casync
 
-# libcurl4-openssl-dev
-
 # Required for test environment setup
 RUN apt-get update && apt-get install -y \
   python3-pip \
@@ -42,11 +39,6 @@ RUN apt-get update && apt-get install -y \
   curl && \
   curl -sLo /usr/bin/codecov https://codecov.io/bash && \
   chmod +x /usr/bin/codecov
-
-RUN apt-get update && apt-get install -y \
-  sudo \
-  gdb \
-  strace
 
 # Create required directories for bind mounts
 RUN mkdir -p /lib/modules && \
